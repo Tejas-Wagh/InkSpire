@@ -17,7 +17,7 @@ function BlogForm({
   return (
     <div className="w-screen dark:bg-black flex items-center md:px-36 px-3 justify-center">
       <form
-        className="flex flex-col items-center border md:px-36  md:py-16 rounded-md border-pink-300  justify-center  mt-20 md:mx-36 p-14 space-y-10 w-[500px] md:w-full  dark:bg-gray-950 shadow-2xl  "
+        className="flex flex-col items-center border md:px-36  md:py-16 rounded-md border-pink-300  justify-center  mt-20 md:mx-36 sm:p-14 p-8 space-y-10 w-[500px] md:w-full  dark:bg-gray-950 shadow-2xl  "
         onSubmit={handleUpdate}
       >
         <div>

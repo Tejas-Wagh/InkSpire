@@ -7,7 +7,7 @@ import Modal from "../components/Modal";
 import { BACKEND_URL } from "../config";
 import { FaSignOutAlt } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import { Button } from "flowbite-react";
+import { Avatar, Button } from "flowbite-react";
 axios.defaults.withCredentials = true;
 
 function Profile() {
@@ -105,7 +105,7 @@ function Profile() {
       />
       <div className="dark:bg-black h-screen py-12 px-8 md:px-0 md:py-0">
         <div className="p-3 max-w-lg  mx-auto">
-          <h1 className="text-3xl font-semibold text-center mt-7 dark:text-white">
+          <h1 className="text-3xl font-semibold text-center mt-7 mb-2 dark:text-white">
             Profile
           </h1>
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -114,6 +114,14 @@ function Profile() {
               alt="profile"
               className="h-24 2-24 self-center cursor-pointer rounded-full object-cover mt-2 "
             />
+            {/* <div className="h-24 2-24 mt-2 ">
+              <Avatar
+                placeholderInitials={user?.username[0]}
+                rounded
+                size="lg"
+                color={"black"}
+              />
+            </div> */}
             <input
               type="text"
               id="username"
@@ -138,7 +146,11 @@ function Profile() {
               className="bg-white border border-gray-500 rounded-md p-3 "
             />
 
-            <Button size={"xl"} color="dark" className="hover:scale-105 duration-300">
+            <Button
+              size={"xl"}
+              color="dark"
+              className="hover:scale-105 duration-300"
+            >
               {isLoading ? "Updating..." : "Update"}
             </Button>
             <div className="flex justify-between mt-1">

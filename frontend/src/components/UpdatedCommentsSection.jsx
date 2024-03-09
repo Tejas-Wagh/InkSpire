@@ -44,7 +44,7 @@ function UpdatedCommentsSection({ postComments }) {
   }, [postComments]);
 
   return (
-    <div className="flex flex-col md:w-[850px] w-[450px] gap-8 py-12 bg-slate-[25]">
+    <div className="flex flex-col md:w-[850px] sm:w-[450px] w-[300px] gap-8 py-12 bg-slate-[25]">
       <h2 className="text-2xl font-semibold">Comments Section</h2>
       <div>
         {user && (

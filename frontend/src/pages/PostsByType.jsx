@@ -40,7 +40,7 @@ function PostsByType() {
       {data?.length > 0 ? (
         data.map((post) => <BlogCard post={post} key={post.id} />)
       ) : (
-        <div className="flex flex-col items-center justify-center gap-4 py-10">
+        <div className="flex flex-col items-center justify-center gap-4 py-10 h-full">
             <MdErrorOutline className="text-4xl"/>
              <p className="text-center text-xl text-slate-700">No posts yet, go ahead and <button className="text-cyan-700 font-semibold  underline" onClick={handleSubmit}>Add One</button></p>
         </div>

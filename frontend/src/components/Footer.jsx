@@ -11,7 +11,7 @@ export default function FooterSection() {
   return (
     <Footer container className="bg-slate-100 rounded-none dark:bg-slate-900 ">
       <div className="w-full text-center ">
-        <div className="w-full flex sm:items-center justify-between px-4 md:px-12 py-2">
+        <div className="w-full flex sm:items-center justify-between px-4 md:px-12 ">
           <h2 className="text-2xl text-gray-800 font-semibold dark:text-white">
             InkSpire
           </h2>

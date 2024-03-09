@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Button } from "flowbite-react";
+import { Avatar, Button } from "flowbite-react";
 import { useSelector, useDispatch } from "react-redux";
 import { Navbar } from "flowbite-react";
 import { FaSun, FaMoon } from "react-icons/fa";
@@ -12,11 +12,11 @@ function MainNavigation() {
 
   return (
     <Navbar className="flex justify-between items-center mb-0 p-4 bg-slate-[25] text-black  border-b  border-gray-100 shadow-sm bg-slate-[25] dark:bg-gray-900 dark:text-white">
-      <h1 className="font-semibold  text-2xl md:text-3xl  hover:scale-105 transition duration-150 md:ml-8">
+      <h1 className="font-semibold  sm:text-2xl text-xl md:text-3xl  hover:scale-105 transition duration-150 md:ml-8">
        <Link to={"/"}> <span className="text-cyan-800">Ink</span>Spire</Link>
       </h1>
 
-      <div className="flex space-x-6 md:order-2">
+      <div className="flex sm:space-x-6 space-x-3  md:order-2">
         <Button
           className="w-12 h-10  sm:inline"
           color="gray"
@@ -26,18 +26,24 @@ function MainNavigation() {
           {theme == "light" ? <FaMoon /> : <FaSun />}
         </Button>
         <Link to="/login">
-          <Button gradientDuoTone="purpleToBlue" outline>
+          <Button gradientDuoTone="purpleToBlue" outline >
             Sign In
           </Button>
         </Link>
 
         {user?.email && (
-          <NavLink to={"/profile"}>
-            <img
+          <NavLink to={"/profile"} className={"flex items-center"}>
+            {/* <img
               src={user.profilePicture}
               alt="Profile"
-              className="w-10 h-10 object-cover rounded-full hover:scale-110 hover:duration-150 transition"
-            />
+              className="sm:w-10 sm:h-10 h-7 w-7 object-cover rounded-full hover:scale-110 hover:duration-150 transition"
+            /> */}
+             <Avatar
+                  placeholderInitials={user?.username[0]}
+                  rounded
+                  size="md"
+                  className="text-black font-extrabold text-lg"
+                />
           </NavLink>
         )}
 

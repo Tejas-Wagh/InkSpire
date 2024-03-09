@@ -106,16 +106,16 @@ function Details() {
 
               <p>{formattedDate}</p>
             </div>
-            <div className="md:-mr-96 space-x-5">
+            <div className="md:-mr-96 sm:space-x-5 space-y-2">
               <button
-                className="text-lg bg-gray-700 px-6 py-2 text-white rounded-lg hover:bg-gray-600 hover:scale-105 duration-200 disabled:bg-gray-600"
+                className="sm:text-lg text-sm bg-gray-700 sm:px-6 sm:py-2 px-2 py-1 text-white rounded-lg hover:bg-gray-600 hover:scale-105 duration-200 disabled:bg-gray-600"
                 onClick={handleEdit}
                 disabled={user?.id != data?.post?.authorId}
               >
                 <FaRegEdit />
               </button>
               <button
-                className="text-lg bg-red-700 px-5 py-2 text-white rounded-lg hover:bg-red-600 hover:scale-105 duration-200 disabled:bg-gray-600"
+                className="sm:text-lg text-sm bg-red-700 sm:px-5 sm:py-2 px-2 py-1 text-white rounded-lg hover:bg-red-600 hover:scale-105 duration-200 disabled:bg-gray-600"
                 onClick={handleDelete}
                 disabled={user?.id != data?.post?.authorId}
               >

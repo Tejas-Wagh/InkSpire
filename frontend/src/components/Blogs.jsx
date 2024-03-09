@@ -8,6 +8,7 @@ import { BACKEND_URL } from "../config";
 import HomeLoading from "./HomeLoading";
 import { useNavigate } from "react-router-dom";
 import FooterSection from "./Footer";
+import { MdErrorOutline } from "react-icons/md";
 function Blogs() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["Posts"],
@@ -22,7 +23,10 @@ function Blogs() {
   }
 
   if (isError) {
-    return <p>An error occured!</p>;
+    return  <div className="flex flex-col items-center justify-center gap-4 py-10">
+    <MdErrorOutline className="text-4xl"/>
+     <p className="text-center text-xl text-slate-700">An error occured!</p>
+</div>
   }
 
   if (data.length == 0) {
@@ -37,48 +41,48 @@ function Blogs() {
     <div className="dark:bg-black">
       <PopularPost mostPopularPost={MostPopularPost[0]} />
       <div className="w-full  md:mt-24 mt-20 flex flex-col md:gap-11 gap-8 sm:px-12 md:px-0">
-        <div className="text-2xl font-semibold md:ml-24 ml-3 text-slate-500 dark:text-white">
+        <div className="text-2xl font-semibold md:ml-24 sm:ml-4 ml-5 text-slate-700 dark:text-white">
           Categories
         </div>
 
-        <div className="grid lg:grid-cols-12 sm:grid-cols-3 grid-cols-2 md:gap-52 gap-4 md:pl-32 px-8">
+        <div className="grid lg:grid-cols-12 sm:grid-cols-3 grid-cols-2 md:gap-52 sm:gap-4 gap-6 md:pl-32 sm:px-8 px-10">
           <Button
             color="dark"
-            className="md:w-40 w-44 py-3"
+            className="md:w-40 sm:w-44 w-32 py-3"
             onClick={() => handleSubmit("Sports")}
           >
             Sports
           </Button>
           <Button
             color="gray"
-            className="md:w-40 py-3 w-44"
+            className="md:w-40 py-3 sm:w-44 w-32"
             onClick={() => handleSubmit("Finance")}
           >
             Finance
           </Button>
           <Button
             gradientMonochrome="pink"
-            className="md:w-40 w-44 py-3"
+            className="md:w-40 sm:w-44 w-32 py-3"
             onClick={() => handleSubmit("Medical")}
           >
             Medical
           </Button>
           <Button
             gradientMonochrome="info"
-            className="md:w-40 w-44 py-3"
+            className="md:w-40 sm:w-44 w-32 py-3"
             onClick={() => handleSubmit("Entertainment")}
           >
             Entertainment
           </Button>
           <Button
-            className="md:w-40 w-44 py-3"
+            className="md:w-40 sm:w-44 w-32 py-3"
             onClick={() => handleSubmit("Fitness")}
           >
             Fitness
           </Button>
           <Button
             gradientMonochrome="purple"
-            className="md:w-40 w-44 py-3"
+            className="md:w-40 sm:w-44 w-32 py-3"
             onClick={() => handleSubmit("Coding")}
           >
             Coding

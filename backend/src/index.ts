@@ -15,7 +15,7 @@ const app = new Hono<{
 app.use(
   "/*",
   cors({
-    origin: "https://inkspire-2.vercel.app/",
+    origin: ["https://inkspire-2.vercel.app","http://localhost:5173"],
     allowHeaders: ["Content-Type", "Authorization"],
     allowMethods: ["POST", "GET", "OPTIONS","DELETE","PUT"],
     exposeHeaders: ["Content-Length"],
