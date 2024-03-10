@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { contextType } from "./user";
 import { verifyUser } from "../middlewares/auth";
-import { deletePost, editPost, getAllPosts, getPost, getPostsByType, handleLike, newPost } from "../middlewares/blog";
+import { deletePost, editPost, getAllPosts, getPost, getPostsByType, getUserPosts, handleLike, newPost } from "../middlewares/blog";
 import { commentLike, deleteComment, getPostsComments, saveComment, updateContent } from "../middlewares/comments";
 // import {inputBlogTypes,updateBlogTypes} from "@tejas09/medium"
 
@@ -10,6 +10,7 @@ export const router = new Hono<contextType>();
 router.get("/posts",getAllPosts);
 router.get("/posts/:type",getPostsByType);
 router.get("/post/:id",getPost);
+router.get("/userposts/:id",getUserPosts);
 router.post("/edit/:id",verifyUser,editPost);
 router.post("/new",verifyUser,newPost);
 router.delete("/delete/:id",verifyUser,deletePost);

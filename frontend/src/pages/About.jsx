@@ -3,9 +3,9 @@ import React from "react";
 function About() {
   return (
     <>
-      <div className="pt-20 px-20 mx-auto md:h-screen h-full dark:bg-black pb-4 dark:text-white">
+      <div className="pt-20 px-6 sm:px-20 mx-auto md:h-screen h-full dark:bg-black pb-4 dark:text-white">
         <h1 className="text-3xl font-semibold text-center">About</h1>
-        <p className="my-5 p-3 opacity-95 md:w-[950px] mx-auto">
+        <div className="my-5 p-3 opacity-95 md:w-[950px] mx-auto">
           {" "}
           Welcome to our blogging website! We provide a platform for passionate
           writers and avid readers to connect, share ideas, and explore a wide
@@ -53,7 +53,7 @@ function About() {
               passionate about the power of words.
             </li>
           </ul>
-        </p>
+        </div>
       </div>
     </>
   );

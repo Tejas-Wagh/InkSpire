@@ -19,7 +19,7 @@ export default function FooterSection() {
             {/* <Footer.Icon href="#" icon={BsFacebook} />
             <Footer.Icon href="#" icon={BsInstagram} />
             <Footer.Icon href="#" icon={BsTwitter} /> */}
-            <Footer.Icon href="https://github.com/Tejas-Wagh" icon={BsGithub} />
+            <Footer.Icon href="https://github.com/Tejas-Wagh" target="_blank" icon={BsGithub} />
           </div>
         </div>
         <Footer.Divider />

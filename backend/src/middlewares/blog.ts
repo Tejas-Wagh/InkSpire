@@ -2,13 +2,14 @@ import { Context, ErrorHandler } from "hono";
 import { contextType } from "../routes/user";
 import { Prisma, PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import {inputBlogTypes,updateBlogTypes} from "@tejas09/medium"
 
 export async function newPost(c: Context<contextType>) {
   const prisma = new PrismaClient({
     datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const body = await c.req.json();
+  const body:inputBlogTypes = await c.req.json();
 
   try {
     await prisma.post.create({
@@ -36,7 +37,7 @@ export async function editPost(c: Context<contextType>) {
     datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const body = await c.req.json();
+  const body:updateBlogTypes = await c.req.json();
   const id = c.req.param("id");
 
   try {
@@ -129,7 +130,7 @@ export const getPostsByType = async (c: Context<contextType>) => {
 
     return c.json(posts);
   } catch (error) {
-    return c.json({message:"An errror occured"})
+    return c.json({ message: "An errror occured" });
   }
 };
 
@@ -238,5 +239,42 @@ export const handleLike = async (c: Context<contextType>) => {
     return c.json({ message: "Success!" });
   } catch (error) {
     return c.json({ message: "An error occured" });
+  }
+};
+
+export const getUserPosts = async (c: Context<contextType>) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env?.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  const id = c.req.param("id");
+
+  try {
+    const posts = await prisma.post.findMany({
+      where: {
+        authorId: id,
+      },
+      select: {
+        author: {
+          select: {
+            username: true,
+          },
+        },
+        authorId: true,
+        date: true,
+        description: true,
+        id: true,
+        image: true,
+        likes: true,
+        title: true,
+        totalLikes: true,
+        type: true,
+        views: true,
+      },
+    });
+
+    return c.json(posts);
+  } catch (error) {
+    return c.json({ message: "An errror occured" });
   }
 };

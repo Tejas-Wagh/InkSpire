@@ -12,6 +12,7 @@ import Details from "./pages/Details";
 import EditBlog from "./pages/EditBlog";
 import NewBlog from "./pages/NewBlog";
 import PostsByType from "./pages/PostsByType";
+import UserPosts from "./pages/UserPosts";
 
 const queryClient = new QueryClient();
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/new" element={<NewBlog />} />
           <Route path="/about" element={<About />} />
           <Route path="/posts/:type" element={<PostsByType/>}/>
+          <Route path="/userposts/:id" element={<UserPosts/>}/>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/details/:id" element={<Details />} />

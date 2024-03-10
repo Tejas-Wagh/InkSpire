@@ -27,7 +27,7 @@ function PopularPost({ mostPopularPost }) {
             </div>
             <div className="flex gap-2">
               <Avatar
-                placeholderInitials={mostPopularPost?.author?.["username"][0]}
+                placeholderInitials={mostPopularPost?.author?.["username"][0].toUpperCase()}
                 rounded
                 size="sm"
               />

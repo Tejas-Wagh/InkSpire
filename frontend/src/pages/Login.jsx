@@ -5,6 +5,8 @@ import { userActions } from "../store/userslice";
 import { useSelector, useDispatch } from "react-redux";
 import OAuth from "../components/OAuth.jsx";
 import { BACKEND_URL } from "../config.js";
+import { HiX } from "react-icons/hi";
+import { Toast } from "flowbite-react";
 
 function Login() {
   const { user, isLoading, isError } = useSelector((state) => state.user);
@@ -76,10 +78,16 @@ function Login() {
             </Link>
           </div>
           {isError && (
-            <p className="text-red-400">
-              An Error Occured, Please Provide Correct Credentials
-            </p>
-          )}
+            <div className="flex justify-center">
+              {" "}
+              <Toast>
+                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-100 text-red-500 dark:bg-red-800 dark:text-red-200 ">
+                  <HiX className="h-5 w-5" />
+                </div>
+                <div className="pl-4 text-sm font-normal">Invalid Credentials.</div>
+                <Toast.Toggle />
+              </Toast>
+            </div>)}
         </form>
       </div>
     </div>

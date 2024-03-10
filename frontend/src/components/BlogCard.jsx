@@ -22,7 +22,7 @@ function BlogCard({ post }) {
           </div>
           <div className="flex gap-2">
             <Avatar
-              placeholderInitials={post?.author?.["username"][0]}
+              placeholderInitials={post?.author?.["username"][0].toUpperCase()}
               rounded
               size="sm"
             />

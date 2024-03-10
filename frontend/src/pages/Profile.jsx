@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../store/userslice";
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/Modal";
 import { BACKEND_URL } from "../config";
@@ -12,19 +12,18 @@ axios.defaults.withCredentials = true;
 
 function Profile() {
   const { user, isLoading, isError } = useSelector((state) => state.user);
+  const [username,setUsername]=useState(user?.username);
+  const [email,setEmail]=useState(user?.email);
+  const [password,setPassword]=useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const deleteDialog = useRef();
   const signoutDialog = useRef();
+  const updateDialog = useRef();
+  
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
 
-    const username = data.get("username");
-    const email = data.get("email");
-    const password = data.get("password");
-
+  async function handleSubmit() {
     try {
       dispatch(userActions.signInStarted());
       const response = await axios.post(
@@ -91,6 +90,10 @@ function Profile() {
     }
   }
 
+  function handleUpdateClick(){
+    updateDialog.current.open();
+  }
+
   return (
     <>
       <Modal
@@ -103,14 +106,20 @@ function Profile() {
         text="You want to Log out"
         ref={signoutDialog}
       />
+        <Modal
+        onProceed={handleSubmit}
+        text="You want to update your information"
+        ref={updateDialog}
+      />
+
       <div className="dark:bg-black h-screen py-12 px-8 md:px-0 md:py-0">
         <div className="p-3 max-w-lg  mx-auto">
           <h1 className="text-3xl font-semibold text-center mt-7 mb-2 dark:text-white">
             Profile
           </h1>
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+          <div className="flex flex-col gap-4">
             <img
-              src={user.profilePicture}
+              src={user.profilePicture || "https://ih1.redbubble.net/image.1046392292.3346/st,small,507x507-pad,600x600,f8f8f8.jpg"}
               alt="profile"
               className="h-24 2-24 self-center cursor-pointer rounded-full object-cover mt-2 "
             />
@@ -128,7 +137,8 @@ function Profile() {
               name="username"
               placeholder="Username"
               className="bg-white border border-gray-500 rounded-md p-3 "
-              defaultValue={user.username}
+              value={username}
+              onChange={(e)=>setUsername(e.target.value)}
             />
             <input
               type="email"
@@ -136,7 +146,8 @@ function Profile() {
               name="email"
               placeholder="Email"
               className="bg-white border border-gray-500 rounded-md p-3 "
-              defaultValue={user.email}
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
             />
             <input
               type="password"
@@ -144,12 +155,15 @@ function Profile() {
               name="password"
               placeholder="Password"
               className="bg-white border border-gray-500 rounded-md p-3 "
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
             />
 
             <Button
               size={"xl"}
               color="dark"
               className="hover:scale-105 duration-300"
+              onClick={handleUpdateClick}
             >
               {isLoading ? "Updating..." : "Update"}
             </Button>
@@ -169,7 +183,7 @@ function Profile() {
             </div>
 
             {isError && <p className="text-red-500">An error occured!</p>}
-          </form>
+          </div>
         </div>
       </div>
     </>

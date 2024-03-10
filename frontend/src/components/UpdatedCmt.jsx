@@ -70,8 +70,8 @@ function UpdatedCmt({
       <div className="p-3  dark:bg-gray-500  border border-gray-300 flex-col rounded-lg shadow-sm  space-y-2 mb-2">
         <div className="flex justify-between">
           <div className="flex gap-2 items-center justify-center">
-            <div class="relative inline-flex items-center justify-center w-7 h-7 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-600">
-              <span class="font-medium text-gray-600 dark:text-gray-300">
+            <div className="relative inline-flex items-center justify-center w-7 h-7 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-600">
+              <span className="font-medium text-gray-600 dark:text-gray-300">
                 {email[0]}
               </span>
             </div>

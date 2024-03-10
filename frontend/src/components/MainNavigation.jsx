@@ -39,7 +39,7 @@ function MainNavigation() {
               className="sm:w-10 sm:h-10 h-7 w-7 object-cover rounded-full hover:scale-110 hover:duration-150 transition"
             /> */}
              <Avatar
-                  placeholderInitials={user?.username[0]}
+                  placeholderInitials={user?.username[0].toUpperCase()}
                   rounded
                   size="md"
                   className="text-black font-extrabold text-lg"
@@ -65,6 +65,11 @@ function MainNavigation() {
         {user?.email && (
           <Navbar.Link as={"div"}>
             <Link to="/new">New Blog</Link>
+          </Navbar.Link>
+        )}
+        {user?.email && (
+          <Navbar.Link as={"div"}>
+            <Link to={`/userposts/${user?.id}`}>Your Posts</Link>
           </Navbar.Link>
         )}
       </Navbar.Collapse>

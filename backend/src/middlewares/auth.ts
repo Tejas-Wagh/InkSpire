@@ -3,13 +3,14 @@ import { contextType } from "../routes/user";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { sign, verify } from "hono/jwt";
+import {signinType,signupType,updateUserType} from "@tejas09/medium"
 
 export async function signup(c: Context<contextType>) {
   const prisma = new PrismaClient({
     datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const body = await c.req.json();
+  const body:signupType = await c.req.json();
   try {
     const user = await prisma.user.create({
       data: {
@@ -40,8 +41,8 @@ export async function signin(c: Context<contextType>) {
     datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const body = await c.req.json();
-  const user = await prisma.user.findUnique({
+  const body:signinType = await c.req.json();
+  const existingUser = await prisma.user.findUnique({
     where: {
       email: body.email,
     },
@@ -50,16 +51,23 @@ export async function signin(c: Context<contextType>) {
       id: true,
       profilePicture: true,
       username: true,
+      password:true,
     },
   });
 
-  if (!user) {
+  if (!existingUser) {
     c.status(403);
     return c.json({ error: "user not found" });
   }
 
-  const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
-  return c.json({ jwt, user });
+  if(existingUser.password!=body.password){
+    c.status(403);
+    return c.json({ error: "Invalid Credentials" });
+  }
+
+const {password,...rest}= existingUser 
+  const jwt = await sign({ id: rest.id }, c.env.JWT_SECRET);
+  return c.json({ jwt, user:rest });
 }
 
 export const google = async (c: Context<contextType>) => {
@@ -119,7 +127,7 @@ export const updateUser = async (c: Context<contextType>, next: Next) => {
     datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const body = await c.req.json();
+  const body:updateUserType = await c.req.json();
 
   if (userid != paramsId) {
     return c.json({ message: "Unauthorized access" });

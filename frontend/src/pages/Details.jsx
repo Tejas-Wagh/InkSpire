@@ -35,7 +35,6 @@ function Details() {
     setLikes(data?.post?.totalLikes);
   }, [data?.post]);
 
-  console.log(likes);
   if (isError) {
     return <p>An error occured!</p>;
   }
@@ -95,7 +94,7 @@ function Details() {
             <div className="md:-ml-96">
               <div className="flex gap-2 items-center mb-3">
                 <Avatar
-                  placeholderInitials={data?.post?.author?.["username"][0]}
+                  placeholderInitials={data?.post?.author?.["username"][0].toUpperCase()}
                   rounded
                   size="sm"
                 />
@@ -106,7 +105,7 @@ function Details() {
 
               <p>{formattedDate}</p>
             </div>
-            <div className="md:-mr-96 sm:space-x-5 space-y-2">
+            <div className="md:-mr-96 sm:space-x-5 space-y-2 space-x-3">
               <button
                 className="sm:text-lg text-sm bg-gray-700 sm:px-6 sm:py-2 px-2 py-1 text-white rounded-lg hover:bg-gray-600 hover:scale-105 duration-200 disabled:bg-gray-600"
                 onClick={handleEdit}

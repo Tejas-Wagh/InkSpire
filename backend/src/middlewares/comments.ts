@@ -2,6 +2,7 @@ import { Context, Next } from "hono";
 import { contextType } from "../routes/user";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import { newCommentType,updateCommentType } from "@tejas09/medium";
 
 export const getPostsComments = async (c: Context<contextType>, next: Next) => {
   const postId = c.req.param("id");
@@ -23,7 +24,7 @@ export const saveComment = async (c: Context<contextType>, next: Next) => {
     datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const body = await c.req.json();
+  const body:newCommentType = await c.req.json();
 
   try{
   const newComment = await prisma.comment.create({
@@ -92,7 +93,7 @@ export const updateContent = async (c: Context<contextType>) => {
     datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const body = await c.req.json();
+  const body:updateCommentType = await c.req.json();
   const id = c.req.param("id");
 
   await prisma.comment.update({

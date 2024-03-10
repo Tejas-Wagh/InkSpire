@@ -2,11 +2,14 @@ import axios from "axios";
 import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/userslice.js";
 import { BACKEND_URL } from "../config.js";
+import { Toast } from "flowbite-react";
+import { HiX } from "react-icons/hi";
 
 function Signup() {
+  const isError = useSelector((state) => state.user.isError);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const sendSignUpReq = async (username, email, password) => {
@@ -19,6 +22,7 @@ function Signup() {
       const resData = await response.data;
       localStorage.setItem("token", resData.jwt);
       dispatch(userActions.signInSuccess(resData.user));
+      navigate("/");
     } catch (error) {
       dispatch(userActions.signInFailed());
       setTimeout(() => {
@@ -34,7 +38,7 @@ function Signup() {
     const email = formdata.get("email");
     const username = formdata.get("username");
     const password = formdata.get("password");
-    sendSignUpReq(username, email, password).then(() => navigate("/"));
+    sendSignUpReq(username, email, password);
   }
   return (
     <div className="dark:bg-black p-12  h-screen">
@@ -70,10 +74,25 @@ function Signup() {
           <OAuth />
           <div className="flex gap-2 my-1">
             <p className="dark:text-white">have an account?</p>
-            <Link to={"/login"} className="text-blue-900 font-normal dark:text-teal-500">
+            <Link
+              to={"/login"}
+              className="text-blue-900 font-normal dark:text-teal-500"
+            >
               Sign In
             </Link>
           </div>
+          {isError && (
+            <div className="flex justify-center">
+              {" "}
+              <Toast>
+                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-100 text-red-500 dark:bg-red-800 dark:text-red-200 ">
+                  <HiX className="h-5 w-5" />
+                </div>
+                <div className="pl-4 text-sm font-normal">Invalid Credentials.</div>
+                <Toast.Toggle />
+              </Toast>
+            </div>
+          )}
         </form>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 import UpdatedCmt from "./UpdatedCmt";
 
@@ -47,7 +47,7 @@ function UpdatedCommentsSection({ postComments }) {
     <div className="flex flex-col md:w-[850px] sm:w-[450px] w-[300px] gap-8 py-12 bg-slate-[25]">
       <h2 className="text-2xl font-semibold">Comments Section</h2>
       <div>
-        {user && (
+        {user?.email && (
           <div>
             <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-5">
               <input
@@ -67,7 +67,7 @@ function UpdatedCommentsSection({ postComments }) {
             </div>
           </div>
         )}
-        {!user && <div>Sign In to post a comment</div>}
+        {!user?.email && <div><Link to={"/login"} className="text-cyan-600 font-semibold">Sign In</Link> to post a comment</div>}
       </div>
 
       {comments?.length == 0 ? (

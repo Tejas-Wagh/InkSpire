@@ -43,7 +43,11 @@ function BlogForm({
             <option disabled={disabledTrue}>Select Blog Type</option>
             <option value="Entertainment">Entertainment</option>
             <option value="Coding">Coding</option>
+            <option value="Sports">Sports</option>
+            <option value="Medical">Medical</option>
+            <option value="Fitness">Fitness</option>
             <option value="Finance">Finance</option>
+
           </select>
           {/* <input
             type="file"
