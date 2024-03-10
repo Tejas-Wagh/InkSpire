@@ -21,12 +21,15 @@ Welcome to InkSpire! This platform provides a space for passionate writers and a
 ### Frontend
 - React: Front-end library for building user interfaces
 - Tailwind CSS: Utility-first CSS framework for styling
+- React Router: For routing through different web  pages
+- Redux toolkit: State Management Library
 
 ### Backend
 - Hono Js with Cloudflare Worker: Backend serverless architecture for handling API requests and business logic
 - Postgres: Relational database for storing blog posts, user data, and comments
 - Prisma: ORM (Object-Relational Mapping) for interacting with the database
 - TypeScript: Typed superset of JavaScript for backend development
+- Zod : Data Validation
 
 ## Getting Started
 
