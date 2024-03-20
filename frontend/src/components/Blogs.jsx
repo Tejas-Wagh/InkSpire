@@ -45,7 +45,7 @@ function Blogs() {
           Categories
         </div>
 
-        <div className="grid lg:grid-cols-12 sm:grid-cols-3 grid-cols-2 md:gap-52 sm:gap-4 gap-6 md:pl-32 sm:px-8 px-10">
+        <div className="grid lg:grid-cols-12 sm:grid-cols-3 grid-cols-2 md:gap-52 sm:gap-4 gap-4 md:pl-32 sm:px-8 px-9">
           <Button
             color="dark"
             className="md:w-40 sm:w-44 w-32 py-3"
@@ -61,27 +61,28 @@ function Blogs() {
             Finance
           </Button>
           <Button
-            gradientMonochrome="pink"
+            color="dark"
             className="md:w-40 sm:w-44 w-32 py-3"
             onClick={() => handleSubmit("Medical")}
           >
             Medical
           </Button>
           <Button
-            gradientMonochrome="info"
+            color="gray"
             className="md:w-40 sm:w-44 w-32 py-3"
             onClick={() => handleSubmit("Entertainment")}
           >
             Entertainment
           </Button>
           <Button
+          color="dark"
             className="md:w-40 sm:w-44 w-32 py-3"
             onClick={() => handleSubmit("Fitness")}
           >
             Fitness
           </Button>
           <Button
-            gradientMonochrome="purple"
+            color="gray"
             className="md:w-40 sm:w-44 w-32 py-3"
             onClick={() => handleSubmit("Coding")}
           >
