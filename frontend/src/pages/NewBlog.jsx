@@ -12,18 +12,15 @@ function NewBlog() {
   function handleCancel() {
     navigate("/");
   }
-  async function handleSave(e) {
-    e.preventDefault();
-
-    const formdata = new FormData(e.target);
+  async function handleSave(title,type,image) {
     const response = await axios.post(
       `${BACKEND_URL}/api/blog/new`,
       {
-        title: formdata.get("title"),
-        image: formdata.get("image"),
+        title: title,
+        image: image,
         author: user.username,
         description: description,
-        type: formdata.get("type"),
+        type:type,
       },
       {
         headers: {

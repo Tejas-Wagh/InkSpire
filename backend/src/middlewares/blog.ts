@@ -10,6 +10,7 @@ export async function newPost(c: Context<contextType>) {
   }).$extends(withAccelerate());
 
   const body:inputBlogTypes = await c.req.json();
+  
 
   try {
     await prisma.post.create({

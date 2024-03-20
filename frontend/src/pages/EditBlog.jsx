@@ -20,16 +20,14 @@ function EditBlog() {
   function handleCancel() {
     navigate("/details/"+params.id);
   }
-  async function handleUpdate(e) {
-    e.preventDefault();
-    const data = new FormData(e.target);
+  async function handleUpdate(title,type,image) {
     const response = await axios.post(
       `${BACKEND_URL}/api/blog/edit/${params.id}`,
       {
-        title: data.get("title"),
-        // author:data.get("author"),
+        title: title,
+        image:image,
         description: description,
-        type: data.get("type"),
+        type: type,
       },
       {
         headers: {
